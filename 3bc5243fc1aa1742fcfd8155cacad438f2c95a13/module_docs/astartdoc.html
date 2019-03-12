@@ -1,0 +1,367 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DataCloud Rhino Onboarding &#8212; DataCloud Rhino 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python Helpers" href="featdir.html" />
+    <link rel="prev" title="DC Rhino’s Documentation" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="featdir.html" title="Python Helpers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="DC Rhino’s Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="datacloud-rhino-onboarding">
+<h1>DataCloud Rhino Onboarding<a class="headerlink" href="#datacloud-rhino-onboarding" title="Permalink to this headline">¶</a></h1>
+<p>This guide walks through all the installations and downloads needed to retrieve
+the dcrhino_lib from github, using Anaconda2/Spyder3 as the distribution of Python.</p>
+<div class="section" id="linux-download-instructions">
+<h2>Linux Download Instructions<a class="headerlink" href="#linux-download-instructions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-downloading-anaconda">
+<h3>Step 1: Downloading Anaconda<a class="headerlink" href="#step-1-downloading-anaconda" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>To install <strong>Anaconda(2/3)</strong>, visit:</dt>
+<dd><a class="reference external" href="https://www.anaconda.com/distribution/#linux">https://www.anaconda.com/distribution/#linux</a>,</dd>
+<dt>Download the distribution of Anaconda you want, and follow these instructions:</dt>
+<dd><a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">https://docs.anaconda.com/anaconda/install/linux/</a></dd>
+</dl>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to enter <strong>yes</strong> when prompted “Do you wish the installer to
+prepend the Anaconda&lt;2 or 3&gt; install location to PATH in your
+/home/&lt;user&gt;/.bashrc ?” Anaconda won’t launch from command line without it.</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="step-2-downloading-git">
+<h3>Step 2: Downloading git<a class="headerlink" href="#step-2-downloading-git" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>To install <strong>git</strong>, navigate to your new Anaconda2 folder By default, Anaconda
+is installed under the user profile, like so: <code class="code docutils literal notranslate"><span class="pre">yourname/anaconda2</span></code> launch a terminal
+from this folder, and download git using:</p>
+<blockquote>
+<div><code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">git</span></code></div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This might take a second and conda may need to update as well.</p>
+</div>
+<p>Congratulations, you now have git. To download private files you will need
+to connect this local download to your github account.</p>
+</div></blockquote>
+</div>
+<div class="section" id="step-3-adding-ssh-key">
+<h3>Step 3: Adding SSH Key<a class="headerlink" href="#step-3-adding-ssh-key" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>To connect an SSH key between your computer and your github account, follow
+these instructions:</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></div>
+</div>
+<p>Once the ssh key is generated and added to the ssh agent on your machine, go
+to <strong>github.com</strong> and sign in. Click on your profile picture icon, then
+click on <strong>settings</strong>.</p>
+<img alt="../_images/userbar-account-settings.png" class="align-center" src="../_images/userbar-account-settings.png" />
+<p>In the sidebar on the left, click on <strong>SSH and GPG keys</strong> then choose <strong>New SSH key</strong>
+or <strong>Add SSH key</strong></p>
+<img alt="../_images/ssh-add-ssh-key.png" class="align-center" src="../_images/ssh-add-ssh-key.png" />
+<p>Title the key (something that identifies your machine), then go to your <strong>local
+ssh id_rsa file</strong> commonly found in this directory:  <code class="code docutils literal notranslate"><span class="pre">yourname/.ssh/id_rsa.pub</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>open in texteditor</li>
+<li>copy the contents</li>
+<li>go back to github</li>
+<li>paste the contents of the file in the second box (below)</li>
+</ul>
+</div></blockquote>
+<img alt="../_images/ssh-key-paste.png" class="align-center" src="../_images/ssh-key-paste.png" />
+<p>Click <strong>Add SSH key</strong> to create the link. Now you can download all the files
+your github account has access to, using git.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Alternatively, if you want to install/use xclip (instead of just copying &amp; pasting):</p>
+<div class="last line-block">
+<div class="line"><a class="reference external" href="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/">https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/</a></div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="step-4-downloading-the-repository">
+<h3>Step 4: Downloading the Repository<a class="headerlink" href="#step-4-downloading-the-repository" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>To download the <strong>dcrhino_lib</strong> repository, open a terminal <em>in the directory
+you want to place the folder.</em> Enter each of the following on the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">DatacloudIntl</span><span class="o">/</span><span class="n">dcrhino_lib</span><span class="o">.</span><span class="n">git</span>
+
+<span class="n">cd</span> <span class="n">dchrino_lib</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>To enter branch 3.0, use the <strong>git checkout</strong> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="mf">3.0</span>
+</pre></div>
+</div>
+<p>Then, move out one level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>And install the log base from DataCloud:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">DatacloudIntl</span><span class="o">/</span><span class="n">rhino_lp</span><span class="o">.</span><span class="n">git</span>
+
+<span class="n">cd</span> <span class="n">rhino_lp</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="step-5-set-spyder-as-default-optional">
+<h3>Step 5: Set Spyder as Default (Optional)<a class="headerlink" href="#step-5-set-spyder-as-default-optional" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>To set spyder as the default option to open .py files, right click the file,
+select <code class="code docutils literal notranslate"><span class="pre">open</span> <span class="pre">with</span> <span class="pre">-&gt;</span></code> and <code class="code docutils literal notranslate"><span class="pre">choose</span> <span class="pre">a</span> <span class="pre">file</span></code>. Then select the spyder executable file
+found in <code class="code docutils literal notranslate"><span class="pre">yourname\anaconda2\bin</span></code> and click the option to <code class="code docutils literal notranslate"><span class="pre">set</span> <span class="pre">this</span> <span class="pre">as</span> <span class="pre">a</span>
+<span class="pre">default</span></code> for opening files of this type.</div></blockquote>
+</div>
+<div class="section" id="step-6-install-clickhouse-driver">
+<h3>Step 6: Install Clickhouse-Driver<a class="headerlink" href="#step-6-install-clickhouse-driver" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Install Clickhouse-Driver to allow a connection with the database. In terminal,
+enter:</p>
+<blockquote>
+<div><code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">clickhouse-driver[lz4,zstd]</span></code></div></blockquote>
+<p>to download Clickhouse-Driver and the compression methods <code class="code docutils literal notranslate"><span class="pre">lz4</span></code> and <code class="code docutils literal notranslate"><span class="pre">zstd</span></code></p>
+<p>If you have trouble (my code failed in building because my C compiler (gcc) was
+outdated), check out this website for instructions on a full linux build:</p>
+<blockquote>
+<div><a class="reference external" href="https://clickhouse.yandex/docs/en/development/build/">https://clickhouse.yandex/docs/en/development/build/</a></div></blockquote>
+<p>Clickhouse-Driver can only connect you to databases you and your computer have
+access to, based on your ssh key or credentials (included in the code for now).</p>
+</div></blockquote>
+</div>
+<div class="section" id="step-7-edit-env-config-json">
+<h3>Step 7: Edit Env_Config.json<a class="headerlink" href="#step-7-edit-env-config-json" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>The env_config.json file is the conductor of the process flow. It tells the
+script where to look for files, where to put files, and what the variables in
+each file might be named. To run the program successfully, you will need to edit
+this json to fit your computer. You must do the following:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure you edit the files for <em>your desired mine</em> in the .json
+file. JSON viewers can be helpful by collapsing the other sections.</p>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Change pathnames in json to reflect the directories on your own computer</dt>
+<dd><ul class="first last">
+<li><p class="first">these include <code class="code docutils literal notranslate"><span class="pre">hole_h5_interpolated_cache_folder</span></code></p>
+<div class="line-block">
+<div class="line">and <code class="code docutils literal notranslate"><span class="pre">hole_h5_processed_cache_folder</span></code></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Make sure env_config.json is situated in the bin of <code class="code docutils literal notranslate"><span class="pre">dchrino_lib</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>Make sure variable names in json match variable names in csv/database</dt>
+<dd><ul class="first last simple">
+<li>i.e. <code class="code docutils literal notranslate"><span class="pre">Collar_Elevation</span></code> might need to be changed to <code class="code docutils literal notranslate"><span class="pre">Collar_Elev</span></code>
+to match the source’s variable. The picture
+below shows you the <strong>values you may need to edit</strong> in
+the .json file.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../_images/json_editing.PNG" class="align-center" src="../_images/json_editing.PNG" />
+</div></blockquote>
+</div>
+<div class="section" id="step-8-create-an-environment">
+<h3>Step 8: Create an Environment<a class="headerlink" href="#step-8-create-an-environment" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>To keep projects and their libraries separate, create a new environment to run the
+test inside of. You can call it whatever you want, but make sure it uses
+<strong>Python 2.7</strong> Create and enter a new environment using the following commands,
+changing the environment to whatever you want:</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">whatever_name_you_want</span> <span class="pre">python=2.7</span></code></p>
+<p><code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">whatever_name_you_want</span></code></p>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="step-9-run-the-test">
+<h3>Step 9: Run the Test<a class="headerlink" href="#step-9-run-the-test" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Open a terminal window and change directory to <code class="code docutils literal notranslate"><span class="pre">dcrhino_lib/bin</span></code>. Then,
+enter the following to download the documented requirements to run the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This code is updated fairly often, and requirements change quickly.
+If your code requires anything, <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> it in the <code class="code docutils literal notranslate"><span class="pre">dcrhino_lib/bin</span></code>
+folder. Make a note to add it to the <code class="code docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
+</div>
+<p>To generate .h5 files (data to be processed and plotted), enter this command in
+a <code class="code docutils literal notranslate"><span class="pre">dcrhino_lib/bin</span></code> terminal as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">generate_cache_acorr</span><span class="o">.</span><span class="n">py</span> <span class="n">mont_wright</span>
+</pre></div>
+</div>
+<p>This (slow-ish) process generates a cache of .h5 and stores them in the directory
+specified in the env_config.json. [If you’re only trying to test the software,
+let one or two .h5 files load, then hold <code class="code docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in the terminal to
+interrupt] Check the contents of your cache to see if the .h5 files have populated.</p>
+<p>Again in <code class="code docutils literal notranslate"><span class="pre">dcrhino_lib/bin</span></code>, enter this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">process_flow</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">f</span> <span class="n">process_flows</span><span class="o">/</span><span class="n">v3_processing_flow</span><span class="o">.</span><span class="n">json</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">kkappler</span><span class="o">/.</span><span class="n">cache</span><span class="o">/</span><span class="n">datacloud</span><span class="o">/</span><span class="n">mont_wright</span><span class="o">/</span><span class="mf">6586_5451_5451.</span><span class="n">h5</span>
+</pre></div>
+</div>
+<p>For our purposes, we are trying to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>download and install the necessary software to run and edit the code</li>
+<li>connect the csv/database file to the script through clickhouse-driver</li>
+<li>edit Env_Config.json to find the path to the data and match its variables</li>
+<li><dl class="first docutils">
+<dt>succesfully run the scripts:</dt>
+<dd><ul class="first last">
+<li>generate_cache_acorr.py</li>
+<li>process_flow.py</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>To verify that the code has run succesfully, check your directory next to
+where the .h5 files are stored. Navigate to <code class="code docutils literal notranslate"><span class="pre">holes</span></code> -&gt; <code class="code docutils literal notranslate"><span class="pre">processed</span></code> -&gt; <code class="code docutils literal notranslate"><span class="pre">mine_name</span></code> -&gt; <code class="code docutils literal notranslate"><span class="pre">holde_id</span></code> -&gt; <code class="code docutils literal notranslate"><span class="pre">v3_processing_flow</span></code></p>
+<p>There should be a .csv, a .png (example below), the processed.h5 file, and the process_flow.json.</p>
+<img alt="../_images/img_out.png" src="../_images/img_out.png" />
+</div></blockquote>
+</div>
+<div class="section" id="step-10-celebrate">
+<h3>Step 10: Celebrate!<a class="headerlink" href="#step-10-celebrate" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Hopefully that wasn’t too painful! Enjoy.</p>
+<img alt="../_images/party.gif" class="align-center" src="../_images/party.gif" />
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/DC_Logo_Padded.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DataCloud Rhino Onboarding</a><ul>
+<li><a class="reference internal" href="#linux-download-instructions">Linux Download Instructions</a><ul>
+<li><a class="reference internal" href="#step-1-downloading-anaconda">Step 1: Downloading Anaconda</a></li>
+<li><a class="reference internal" href="#step-2-downloading-git">Step 2: Downloading git</a></li>
+<li><a class="reference internal" href="#step-3-adding-ssh-key">Step 3: Adding SSH Key</a></li>
+<li><a class="reference internal" href="#step-4-downloading-the-repository">Step 4: Downloading the Repository</a></li>
+<li><a class="reference internal" href="#step-5-set-spyder-as-default-optional">Step 5: Set Spyder as Default (Optional)</a></li>
+<li><a class="reference internal" href="#step-6-install-clickhouse-driver">Step 6: Install Clickhouse-Driver</a></li>
+<li><a class="reference internal" href="#step-7-edit-env-config-json">Step 7: Edit Env_Config.json</a></li>
+<li><a class="reference internal" href="#step-8-create-an-environment">Step 8: Create an Environment</a></li>
+<li><a class="reference internal" href="#step-9-run-the-test">Step 9: Run the Test</a></li>
+<li><a class="reference internal" href="#step-10-celebrate">Step 10: Celebrate!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/module_docs/astartdoc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="featdir.html" title="Python Helpers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="DC Rhino’s Documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, DataCloud.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

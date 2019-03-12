@@ -1,0 +1,5 @@
+.. DC Rhinos sub sub directory file for helper folder and Sphinx Documentation
+   Author: Tristan Whisenant for DataCloud, February 2019
+   Purpose: Pull modules in helper folder for index.rst doctree.
+   
+.. include:: ./helper_docs/helpdoc.rst

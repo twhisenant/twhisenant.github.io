@@ -1,0 +1,25 @@
+.. DC Rhinos sub directory file for helper folder and Sphinx Documentation
+   Author: Tristan Whisenant for DataCloud, February 2019
+   Purpose: Pull modules in helper folder for index.rst doctree.
+
+DataCloud Helpers
+^^^^^^^^^^^^^^^^^
+    
+Rhino DB Helper
+===============
+
+    .. automodule:: rhino_db_helper
+        :members:
+        
+MWD Helper
+==========
+
+    .. automodule:: mwd_helper
+        :members:   
+        
+MWD Merger
+===============
+
+    .. automodule:: mwd_rhino_merger
+        :members:
+        

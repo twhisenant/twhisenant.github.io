@@ -1,0 +1,420 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Signal Processing &#8212; DataCloud Rhino 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="signal-processing">
+<h1>Signal Processing<a class="headerlink" href="#signal-processing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-filters"></span><dl class="class">
+<dt id="filters.FIRLSFilter">
+<em class="property">class </em><code class="descname">FIRLSFilter</code><span class="sig-paren">(</span><em>corners</em>, <em>duration</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#filters.FIRLSFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basically you need the data_key to make the filter because you dont know
+the sampling rate.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">This needs to be funtion of nyq</p>
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">length and desired_duration have to be self consistent… maybe
+add a unit test or check for this consistency</p>
+</div>
+<dl class="attribute">
+<dt id="filters.FIRLSFilter.n_taps">
+<code class="descname">n_taps</code><a class="headerlink" href="#filters.FIRLSFilter.n_taps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the filter order (number of filter coefficients, or n_taps)
+from thge nyquist frequency.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">filter order</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="filters.FIRLSFilter.make">
+<code class="descname">make</code><span class="sig-paren">(</span><em>sampling_rate</em><span class="sig-paren">)</span><a class="headerlink" href="#filters.FIRLSFilter.make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates nyquist frequency, creates corner_tuple, calls <a class="reference internal" href="#filters.FIRLSFilter.n_taps" title="filters.FIRLSFilter.n_taps"><code class="xref py py-func docutils literal notranslate"><span class="pre">n_taps()</span></code></a>,
+and loads desired_response_amplitude. Calculates the values of the filter
+coefficients using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firls.html">scipy.signal.firls function.</a>
+Returns these coefficients (type: float32)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sampling_rate</strong> (<em>float</em>) – the sampling rate (meas/sec)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">filter coefficients of type float32</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="filters.FIRLSFilter.corner_string">
+<code class="descname">corner_string</code><a class="headerlink" href="#filters.FIRLSFilter.corner_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="code docutils literal notranslate"><span class="pre">corners</span></code> is empty, creates an empty variable to be filled. If
+full, adapts the pre-existing format and joins an empty sequence to be filled.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">{} if corners is none, strings with corner values if corners is not none.
+See parameter <code class="docutils literal notranslate"><span class="pre">corners</span></code> in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firls.html">scipy.signal.firls function.</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(list)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Corners: A monotonic nondecreasing sequence containing the
+band edges in Hz. All elements must be non-negative and less than or
+equal to the Nyquist frequency given by nyq.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="filters.FIRLSFilter.id_string">
+<code class="descname">id_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#filters.FIRLSFilter.id_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create list of strings with flavor, corners, and time duration, and
+lfilter if apply_how selects it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of strings with:<blockquote>
+<div><ul class="simple">
+<li>flavor</li>
+<li>corner_string</li>
+<li>duration in ms</li>
+<li>_lfilter (optional)</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="interpolation">
+<h2>Interpolation<a class="headerlink" href="#interpolation" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-interpolation"></span><dl class="function">
+<dt id="interpolation.sinc_interp">
+<code class="descname">sinc_interp</code><span class="sig-paren">(</span><em>x</em>, <em>s</em>, <em>u</em><span class="sig-paren">)</span><a class="headerlink" href="#interpolation.sinc_interp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolates x (sinc interpolation) sampled at “s” instants. Output “y” is
+sampled at “u” instants (“u” for “upsampled”). Vectorized with
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.tile.html">Numpy tile</a></p>
+<dl class="docutils">
+<dt>From Github:</dt>
+<dd><a class="reference external" href="https://gist.github.com/endolith/1297227">https://gist.github.com/endolith/1297227</a></dd>
+<dt>From Matlab:</dt>
+<dd><a class="reference external" href="http://phaseportrait.blogspot.com/2008/06/sinc-interpolation-in-matlab.html">http://phaseportrait.blogspot.com/2008/06/sinc-interpolation-in-matlab.html</a></dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> – data vector to be interpolated (input)</li>
+<li><strong>s</strong> – time vector of data to be interpolated (input)</li>
+<li><strong>u</strong> – time vector of data to be output (where do you want y values?)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">interpolated data vector</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">20180627: this code taken from <a class="reference external" href="https://gist.github.com/endolith/1297227">https://gist.github.com/endolith/1297227</a> KNK</p>
+</div>
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="phase-rotation">
+<h2>Phase Rotation<a class="headerlink" href="#phase-rotation" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-phase_rotation"></span><p>Created on Wed Nov 14 12:21:45 2018</p>
+<p>Author: kkappler</p>
+<dl class="function">
+<dt id="phase_rotation.rotate_phase">
+<code class="descname">rotate_phase</code><span class="sig-paren">(</span><em>data</em>, <em>phase_shift</em>, <em>degrees=True</em><span class="sig-paren">)</span><a class="headerlink" href="#phase_rotation.rotate_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Phase rotation by fast fourier transform, multiplication by phasor, inverse fft
+and taking reals. Rotates data by phi</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>array</em>) – numpy array (currently 1D, need to test as 2D might need
+to transpose)</li>
+<li><strong>shift</strong> (<em>phase</em>) – float: #of degrees to shift signal phase</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first"><strong>degrees</strong> (<em>bool</em>) – True for degrees, false for radians</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Phase shifted data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(real Numpy ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="phase_rotation.determine_phase_state">
+<code class="descname">determine_phase_state</code><span class="sig-paren">(</span><em>data</em>, <em>trough_search_width</em><span class="sig-paren">)</span><a class="headerlink" href="#phase_rotation.determine_phase_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the phase state by searching for troughs to the left and right of the
+peak. Indeterminate means no troughs or too small search width, balanced means
+equal number of troughs on both sides, left_low/right_low means trough
+count imbalance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>array</em>) – numpy array (currently 1D, need to test as 2D might need
+to transpose)</li>
+<li><strong>trough-search-width</strong> (<em>float</em>) – this is how far to the left and right of
+the peak we will
+look for a minumum.  It must be large enough for the minimum to be contained,
+but not so large that we may find another minumum show up</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>Phase state status as one of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li>’indeterminate’</li>
+<li>’balanced’</li>
+<li>’left_low’</li>
+<li>’right_low’</li>
+<li>’surprise - already balanced’</li>
+</ul>
+</div></blockquote>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">20190211: I do not understand the condition  max_index&lt;trough_search_width
+which leads to balanced .. it works most of the time but for left low traces with
+fewer observations to th left than the right it is returning balanced prematurely
+– I’m going to comment it out and see what happens</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="phase_rotation.test_phase_rotation">
+<code class="descname">test_phase_rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#phase_rotation.test_phase_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads pet_trace, plots original, shift by phi, and shift by 2phi to test
+the functionality of <a class="reference internal" href="#phase_rotation.rotate_phase" title="phase_rotation.rotate_phase"><code class="xref py py-func docutils literal notranslate"><span class="pre">rotate_phase()</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="phase_rotation.main">
+<code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#phase_rotation.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="data-selection">
+<h1>Data Selection<a class="headerlink" href="#data-selection" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="symmetric-trace-trim">
+<h2>Symmetric Trace Trim<a class="headerlink" href="#symmetric-trace-trim" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-symmetric_trace"></span><p>Created on Mon Feb  4 21:28:04 2019</p>
+<p>Author: kkappler</p>
+<dl class="class">
+<dt id="symmetric_trace.SymmetricTrace">
+<em class="property">class </em><code class="descname">SymmetricTrace</code><span class="sig-paren">(</span><em>data</em>, <em>sampling_rate</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.SymmetricTrace" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="symmetric_trace.SymmetricTrace.calculate_time_vector">
+<code class="descname">calculate_time_vector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.SymmetricTrace.calculate_time_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the equal step, ideal time vector using “dt” and “num_observations”
+and shifting x-axis using t0_index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="symmetric_trace.SymmetricTrace.trim_to_num_points_lr">
+<code class="descname">trim_to_num_points_lr</code><span class="sig-paren">(</span><em>n_points</em><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.SymmetricTrace.trim_to_num_points_lr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trim to index with width = 2 * n_points + 1, centered around
+center_index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="symmetric_trace.SymmetricTrace.trim_to_indices">
+<code class="descname">trim_to_indices</code><span class="sig-paren">(</span><em>indices</em><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.SymmetricTrace.trim_to_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trim to specified indices, not necessarily equidistant around center_index
+like <a class="reference internal" href="#symmetric_trace.SymmetricTrace.trim_to_num_points_lr" title="symmetric_trace.SymmetricTrace.trim_to_num_points_lr"><code class="xref py py-func docutils literal notranslate"><span class="pre">trim_to_num_points_lr()</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="symmetric_trace.SymmetricTrace.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.SymmetricTrace.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot time_vector vs. data, title, label, and show.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="symmetric_trace.SymmetricTrace.rotate_recenter_and_trim">
+<code class="descname">rotate_recenter_and_trim</code><span class="sig-paren">(</span><em>phi</em><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.SymmetricTrace.rotate_recenter_and_trim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use <a class="reference internal" href="#phase_rotation.rotate_phase" title="phase_rotation.rotate_phase"><code class="xref py py-func docutils literal notranslate"><span class="pre">phase_rotation.rotate_phase()</span></code></a> to rotate data by phi degrees. Find
+new center index of rotated data, and shift the trimmings to new center
+index using <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.roll.html">Numpy roll.</a>
+Revise data to reflect these changes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phi</strong> (<em>float</em>) – angle, in degrees, to shift data</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">20140214: Initially this method trimmed the trace.  BUT that could result in
+different length traces within a blasthole.  Theoretically this is not a
+problem,but practically it will cause problems if we wanted to use the
+component_as_array() method of TraceDataframe().  So to work around this
+I can either use np.roll or zeropad the trace.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="symmetric_trace.my_function">
+<code class="descname">my_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.my_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tester function for <a class="reference internal" href="#symmetric_trace.SymmetricTrace" title="symmetric_trace.SymmetricTrace"><code class="xref py py-func docutils literal notranslate"><span class="pre">SymmetricTrace()</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="symmetric_trace.main">
+<code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#symmetric_trace.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/DC_Logo_Padded.png" alt="Logo"/>
+            </a></p>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">DataCloud Rhino Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html#documenting-with-sphinx">Documenting with Sphinx</a></li>
+</ul>
+
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/module_docs/signal_processing_docs/sigppoc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, DataCloud.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

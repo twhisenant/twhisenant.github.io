@@ -1,0 +1,21 @@
+.. DC Rhinos sub directory file for plotter folder and Sphinx Documentation
+   Author: Tristan Whisenant for DataCloud, February 2019
+   Purpose: Pull modules in plotters folder for index.rst doctree.
+
+Plotting Data
+*************
+
+
+Plotting Module
+========================
+
+.. automodule:: qc_plotter
+    :members:
+    
+        
+Color Bar Module
+=========================
+
+.. automodule:: colour_bar_axis_limits
+    :members:
+   

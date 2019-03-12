@@ -1,0 +1,41 @@
+.. DC Rhinos sub directory file for modules folder and Sphinx Documentation
+   Author: Tristan Whisenant for DataCloud, March 2019
+   Purpose: Pull modules in modules folder for index.rst doctree.
+    
+Drills, Bits, Installation Locations
+====================================
+Assign integers to represent what type of drill/bit/install was used.
+
+    .. automodule:: drill_types
+        :members:
+            
+    .. automodule:: bit_types
+        :members:
+        
+    .. automodule:: sensor_installation_locations
+        :members:       
+         
+Configuration
+=============
+
+    .. automodule:: config
+        :members:   
+        
+    .. automodule:: env_config
+        :members:
+            
+Data Handling
+=============
+
+Metadata
+^^^^^^^^
+
+    .. automodule:: metadata
+        :members:
+        
+Trace Dataframe
+^^^^^^^^^^^^^^^
+
+    .. automodule:: trace_dataframe
+        :members:
+            

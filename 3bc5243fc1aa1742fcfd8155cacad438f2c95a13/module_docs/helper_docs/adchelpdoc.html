@@ -1,0 +1,802 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DataCloud Helpers &#8212; DataCloud Rhino 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="datacloud-helpers">
+<h1>DataCloud Helpers<a class="headerlink" href="#datacloud-helpers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rhino-db-helper">
+<h2>Rhino DB Helper<a class="headerlink" href="#rhino-db-helper" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-rhino_db_helper"></span><p>Created on Mon Jan 14 20:56:19 2019</p>
+<p>Author: thiago</p>
+<dl class="class">
+<dt id="rhino_db_helper.RhinoDBHelper">
+<em class="property">class </em><code class="descname">RhinoDBHelper</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>user='default'</em>, <em>password=''</em>, <em>database='test'</em>, <em>compression='lz4'</em>, <em>conn=False</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Facilitates connection to DB for retrieval of mine data.</p>
+<p><strong>Requires:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>clickhouse-driver with lz4 compression option</li>
+<li>credentials for accessing the database</li>
+</ul>
+</div></blockquote>
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_file_id_from_file_path">
+<code class="descname">get_file_id_from_file_path</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_file_id_from_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves file id from path using clichouse driver execute function,
+executes the query to the database. <a class="reference external" href="https://clickhouse-driver.readthedocs.io/en/latest/api.html#client">“Execute” documentaton found here.</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – find file id from the path provided</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Client-selected id from a table of possible files</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.create_acorr_file">
+<code class="descname">create_acorr_file</code><span class="sig-paren">(</span><em>file_path</em>, <em>rig_id</em>, <em>sensor_id</em>, <em>digitizer_id</em>, <em>min_ts</em>, <em>max_ts</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.create_acorr_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates acorr file and inserts mine info, using execute and clickhouse.
+<a class="reference external" href="https://clickhouse-driver.readthedocs.io/en/latest/api.html#client">“Execute” documentaton found here.</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_path</strong> (<em>str</em>) – where the file should go</li>
+<li><strong>rig_id</strong> (<em>str</em>) – rig identifier</li>
+<li><strong>sensor_id</strong> (<em>str</em>) – sensor that took the data identifier</li>
+<li><strong>digitizer_id</strong> (<em>str</em>) – digitizer that recorded data id</li>
+<li><strong>min_ts</strong> – minimum time value (will be converted to int)</li>
+<li><strong>max_ts</strong> – maximum time value (will be converted to int)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file_id with saved variables</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">figure out what min/max ts is</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.create_new_acorr_file_conf">
+<code class="descname">create_new_acorr_file_conf</code><span class="sig-paren">(</span><em>file_id</em>, <em>config_str</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.create_new_acorr_file_conf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new file configuration string, insert into acorr file variable,
+‘vars_to_save’ using clickhouse (client) <a class="reference external" href="https://clickhouse-driver.readthedocs.io/en/latest/api.html#client">excecute.</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_id</strong> (<em>str</em>) – file to configure</li>
+<li><strong>config_str</strong> (<em>str</em>) – configuration options</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">file confguration string after having been updated</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_file_config">
+<code class="descname">get_file_config</code><span class="sig-paren">(</span><em>file_id</em>, <em>version</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_file_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask for file configuration if present</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_last_file_config_from_file_id">
+<code class="descname">get_last_file_config_from_file_id</code><span class="sig-paren">(</span><em>file_id</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_last_file_config_from_file_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask for file configuration from the file before this</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_last_version_file_config">
+<code class="descname">get_last_version_file_config</code><span class="sig-paren">(</span><em>file_id</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_last_version_file_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask for file configuration before this file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.save_autocorr_traces">
+<code class="descname">save_autocorr_traces</code><span class="sig-paren">(</span><em>file_id</em>, <em>timestamps</em>, <em>axial</em>, <em>tangential</em>, <em>radial</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.save_autocorr_traces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert data into <em>acorr_traces_table_name</em> for each chunk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>file_id</strong> (<em>str</em>) – where to save</li>
+<li><strong>timestamps</strong> – to be saved</li>
+<li><strong>axial</strong> – axial wave readings</li>
+<li><strong>tangential</strong> – tangential wave readings</li>
+<li><strong>radial</strong> – radial wave readings</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.check_for_pre_saved_acorr_traces">
+<code class="descname">check_for_pre_saved_acorr_traces</code><span class="sig-paren">(</span><em>timestamps</em>, <em>sensor_id</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.check_for_pre_saved_acorr_traces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the directory for saved acorr traces and prevent duplicates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_files_id_from_sensor_id">
+<code class="descname">get_files_id_from_sensor_id</code><span class="sig-paren">(</span><em>sensor_id</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_files_id_from_sensor_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get files containing data from a certain sensor id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sensor_id</strong> (<em>str</em>) – identifier for the sensor</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Array of file_id’s (str)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(array)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_files_list">
+<code class="descname">get_files_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_files_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all files containing query string of metadata, and return them in a DataFrame</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_autocor_traces_from_sensor_id">
+<code class="descname">get_autocor_traces_from_sensor_id</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>min_ts=0</em>, <em>max_ts=9999999999</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_autocor_traces_from_sensor_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get traces, instead of files, from sensor id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sensor_id</strong> (<em>str</em>) – indentifier for the sensor</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>min_ts</strong> – 0, want to keep our search broad</li>
+<li><strong>max_ts</strong> – 999999999999999, want to keep our search broad</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">All traces from a specific sensor</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.get_autocor_traces_from_files_ids">
+<code class="descname">get_autocor_traces_from_files_ids</code><span class="sig-paren">(</span><em>files_ids</em>, <em>min_ts=0</em>, <em>max_ts=9999999999</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.get_autocor_traces_from_files_ids" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>files_ids</strong> (<em>str</em>) – files to take autocor traces from</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>min_ts</strong> – 0, want to keep our search broad</li>
+<li><strong>max_ts</strong> – 999999999999999, want to keep our search broad</li>
+<li><strong>all_columns</strong> (<em>list</em>) – for example: [‘timestamp’,’microtime,
+‘axial_trace’, ‘tangential_trace’, ‘radial_trace’]</li>
+<li><strong>result</strong> (<em>list</em>) – One element per row of the database matching query</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">autocor traces from specified file ids</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(Dataframe)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">20190122; modified assignment of df columns which contain
+tupples so that 2d arrays can be accessed by calling
+my_2darray = np.atleast_2d(list(df[column_label])) where column label
+is for example ‘axial_trace’</p>
+</div>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">add functionality so that we can ask for any subset of components
+not forcing user to get all components.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.timestamp_microtime_to_float">
+<code class="descname">timestamp_microtime_to_float</code><span class="sig-paren">(</span><em>df</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.timestamp_microtime_to_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy dataframe, move timestamp to float, kill “microtime”</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>df</strong> (<em>DataFrame</em>) – with timestamp needing conversion</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">df with timestamp as float and microtime deleted</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(DataFrame)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rhino_db_helper.RhinoDBHelper.query_result_to_pd">
+<code class="descname">query_result_to_pd</code><span class="sig-paren">(</span><em>result</em>, <em>columns</em><span class="sig-paren">)</span><a class="headerlink" href="#rhino_db_helper.RhinoDBHelper.query_result_to_pd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert your query result to a pandas DataFrame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>result</strong> – data values</li>
+<li><strong>columns</strong> – data keys</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>result</em> in the form of a dataframe</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="mwd-helper">
+<h2>MWD Helper<a class="headerlink" href="#mwd-helper" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-mwd_helper"></span><p>Created on Tue Jan 22 12:50:55 2019</p>
+<p>Author: thiago</p>
+<dl class="class">
+<dt id="mwd_helper.MWDHelper">
+<em class="property">class </em><code class="descname">MWDHelper</code><span class="sig-paren">(</span><em>env_config</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Facilitates the use of mwd data downstream by managing mine selection, naming, and formatting.</p>
+<p class="rubric">References</p>
+<p>local env_config.json file in ..dcrhino_lib/bin</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>Requires</strong> local env_config.json file that is mine-specific</p>
+</div>
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_hole_mwd_from_mine_mwd">
+<code class="descname">get_hole_mwd_from_mine_mwd</code><span class="sig-paren">(</span><em>mine_mwd</em>, <em>bench_name</em>, <em>pattern_name</em>, <em>hole_name</em>, <em>hole_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_hole_mwd_from_mine_mwd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locates individual hole data in the mine_mwd data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mine_mwd</strong> (<em>DataFrame</em>) – Data for entire mine</li>
+<li><strong>bench_name</strong> (<em>str</em>) – Name of bench where target hole is located</li>
+<li><strong>pattern_name</strong> (<em>str</em>) – Name of pattern where target hole is located</li>
+<li><strong>hole_name</strong> (<em>str</em>) – Name of hole (sometimes interchangeable with hole_id)</li>
+<li><strong>str</strong><strong>)</strong> (<em>hole_id</em>) – Numerical id for hole (sometimes used in place for hole_name)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">mine_mwd[‘bench_name’, ‘pattern_name’, ‘hole_name’, ‘hole_id’], the data for a specific hole.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(Series)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_mwd_from_csv">
+<code class="descname">get_mwd_from_csv</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_mwd_from_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves MWD data from local .csv file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – Path to .csv file containing mwd data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The contents of the .csv file in a 2D data structure</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(DataFrame)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_mwd_from_db">
+<code class="descname">get_mwd_from_db</code><span class="sig-paren">(</span><em>mine_domain</em>, <em>dataset_name</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_mwd_from_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects to database using <a class="reference internal" href="#mwd_helper.MWDHelper.get_db_conn" title="mwd_helper.MWDHelper.get_db_conn"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_db_conn()</span></code></a> with credentials and retrieves data from specified mine.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mine_domain</strong> (<em>str</em>) – Database domain name for the mine.</li>
+<li><strong>dataset_name</strong> (<em>str</em>) – Dataset inside mine_domain Database.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The contents of the dataset_name</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Todo</p>
+<p class="last">Ask for user credentials and input them in all database-connecting functions</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.query_result_to_pd">
+<code class="descname">query_result_to_pd</code><span class="sig-paren">(</span><em>result</em>, <em>columns</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.query_result_to_pd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert results to pandas DataFrame</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>result</strong> (<em>list</em>) – data from query to be converted to Pandas DataFrame</li>
+<li><strong>columns</strong> (<em>list</em>) – Column names for queried variables</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a DataFrame containing <em>result</em> with variable names specified in <em>columns</em>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_mapping_from_label">
+<code class="descname">get_mapping_from_label</code><span class="sig-paren">(</span><em>mappings</em>, <em>column_name</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_mapping_from_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>String compares variable names to find matches between parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mappings</strong> (<em>list</em>) – contains mwd metadata in DataFrames</li>
+<li><strong>mapping</strong> (<em>DataFrame</em>) – contains variable data</li>
+<li><strong>column_name</strong> (<em>str</em>) – column name to find</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">DataFrame matching <em>column_name</em>, if any</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_describe_by_column_name">
+<code class="descname">get_describe_by_column_name</code><span class="sig-paren">(</span><em>columns</em>, <em>mapping_column_name</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_describe_by_column_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>String compares variable names to find matches between parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mappings</strong> (<em>list</em>) – contains mwd metadata in DataFrames</li>
+<li><strong>mapping</strong> (<em>DataFrame</em>) – contains variable data</li>
+<li><strong>column_name</strong> (<em>str</em>) – column name to find</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">DataFrame matching <em>column_name</em>, if any</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_db_conn">
+<code class="descname">get_db_conn</code><span class="sig-paren">(</span><em>subdomain</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_db_conn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Requests data from database, with credentials built in (for now), creates
+a temorary json file for data recieved, and returns data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>subdomain</strong> (<em>str</em>) – data location in the database</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">connection dictionary with host and port to be used in <a class="reference internal" href="#mwd_helper.MWDHelper.get_mwd_from_db" title="mwd_helper.MWDHelper.get_mwd_from_db"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_mwd_from_db()</span></code></a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(dict)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_dc_datasets_configs">
+<code class="descname">get_dc_datasets_configs</code><span class="sig-paren">(</span><em>subdomain</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_dc_datasets_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns json, not dictionary, with database token and configuration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>subdomain</strong> (<em>str</em>) – data location in the database</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">json containing token for database connection, credentials, configuration</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(unicode)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_remaped_column_values">
+<code class="descname">get_remaped_column_values</code><span class="sig-paren">(</span><em>mwd_df</em>, <em>col</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_remaped_column_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits unparsed column names if more than one, and returns remaped column
+names</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mwd_df</strong> (<em>DataFrame</em>) – large dataframe for the mine</li>
+<li><strong>col</strong> – variable name, or list of names, separated with “|” to be fetched</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of output column name(s)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(list)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.remap_mwd_df">
+<code class="descname">remap_mwd_df</code><span class="sig-paren">(</span><em>mwd_df</em>, <em>mapping</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.remap_mwd_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deep-copies mwd dataframe, creates a new dataframe with columns from mapping dict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mwd_df</strong> (<em>dataframe</em>) – dataframe from which copy is made</li>
+<li><strong>mapping</strong> (<em>dict</em>) – dictionary with ‘column’ key and column name values</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">remapped mwd dataframe with empty columns dropped</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(Dataframe)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_helper.MWDHelper.get_rhino_mwd_from_mine_name">
+<code class="descname">get_rhino_mwd_from_mine_name</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_helper.MWDHelper.get_rhino_mwd_from_mine_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves mwd from .csv or database connection, remaps,
+adds columns, standardizes format/names for downstream functions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mine_name</strong> (<em>str</em>) – name of the mine you are working on</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">DataFrame from .csv or database if able to be found,
+remaped with optionals
+using <code class="xref py py-func docutils literal notranslate"><span class="pre">_create_optional_columns()</span></code> and named/formatted with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">_post_process()</span></code>. False if otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(DataFrame)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="mwd-merger">
+<h2>MWD Merger<a class="headerlink" href="#mwd-merger" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-mwd_rhino_merger"></span><p>Created on Tue Jan 22 14:54:20 2019</p>
+<p>Author: thiago</p>
+<dl class="class">
+<dt id="mwd_rhino_merger.MWDRhinoMerger">
+<em class="property">class </em><code class="descname">MWDRhinoMerger</code><span class="sig-paren">(</span><em>file_list</em>, <em>mwd_dc_df</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merges MWD with trace data by demarcating timestamps, retrieving data, matching and merging.</p>
+<dl class="method">
+<dt id="mwd_rhino_merger.MWDRhinoMerger.get_min_max_time">
+<code class="descname">get_min_max_time</code><span class="sig-paren">(</span><em>hole_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger.get_min_max_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the min and max timestamps for each hole id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hole_id</strong> (<em>str</em>) – hole identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">minimum and maximum timestamps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_rhino_merger.MWDRhinoMerger.get_acorr_trace_data_from_index">
+<code class="descname">get_acorr_trace_data_from_index</code><span class="sig-paren">(</span><em>idx</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger.get_acorr_trace_data_from_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick out line using from matches_list.iloc (created by <code class="xref py py-func docutils literal notranslate"><span class="pre">_generate_matches_list()</span></code>),
+then pull hole dataframe using <code class="xref py py-func docutils literal notranslate"><span class="pre">get_hole_df()</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>idx</strong> (<em>int</em>) – line no. of hole for acorr trace data to be pulled</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">none</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_rhino_merger.MWDRhinoMerger.merge_mwd_with_trace">
+<code class="descname">merge_mwd_with_trace</code><span class="sig-paren">(</span><em>hole_mwd</em>, <em>trace_data</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger.merge_mwd_with_trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenate (along columns) rhino traces and interpolated hole mwd data from
+<a class="reference internal" href="#mwd_rhino_merger.MWDRhinoMerger.get_mwd_interpolated_by_second" title="mwd_rhino_merger.MWDRhinoMerger.get_mwd_interpolated_by_second"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_mwd_interpolated_by_second()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>hole_mwd</strong> (<em>Dataframe</em>) – hole mwd data</li>
+<li><strong>trace_data</strong> (<em>Dataframe</em>) – trace data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dataframe combining the two dataframes’ columns</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_rhino_merger.MWDRhinoMerger.get_mwd_interpolated_by_second">
+<code class="descname">get_mwd_interpolated_by_second</code><span class="sig-paren">(</span><em>hole_mwd</em>, <em>time_vector</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger.get_mwd_interpolated_by_second" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve interpolated mwd values from dataframe only for a specific time vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>hole_mwd</strong> (<em>DataFrame</em>) – mwd dataframe</li>
+<li><strong>tme_vector</strong> (<em>Pandas Date Range</em>) – time to take snippet from</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">interpolated mwd from time specified</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(DataFrame)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_rhino_merger.MWDRhinoMerger.get_interpolated_categorical_column">
+<code class="descname">get_interpolated_categorical_column</code><span class="sig-paren">(</span><em>time_vector</em>, <em>mwd_hole_df</em>, <em>column_label</em>, <em>end_time_column_label='start_time'</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger.get_interpolated_categorical_column" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>time_vector</strong> (<em>Pandas Date Range</em>) – period of interest, for example:
+pd.date_range(start=row.time_start, periods=num_traces_in_blasthole, freq=‘1S’)</li>
+<li><strong>mwd_hole_df</strong> (<em>Dataframe</em>) – dataframe containing column_label, to be interpolated</li>
+<li><strong>column_label</strong> (<em>str</em>) – what to interp … for example ‘computed_elevation’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first"><strong>end_time_column_label</strong> (<em>str</em>) – ‘start_time’ to select timeframe to interp</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Interped data, for example the depths of the traces</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uses kneigbors nearest vote interp function instead of the
+1D, linear interpolation method used in <a class="reference internal" href="#mwd_rhino_merger.MWDRhinoMerger.get_interpolated_column" title="mwd_rhino_merger.MWDRhinoMerger.get_interpolated_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_interpolated_column()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mwd_rhino_merger.MWDRhinoMerger.get_interpolated_column">
+<code class="descname">get_interpolated_column</code><span class="sig-paren">(</span><em>time_vector</em>, <em>mwd_hole_df</em>, <em>column_label</em>, <em>end_time_column_label='start_time'</em><span class="sig-paren">)</span><a class="headerlink" href="#mwd_rhino_merger.MWDRhinoMerger.get_interpolated_column" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>time_vector</strong> (<em>Pandas Date Range</em>) – period of interest, for example:
+pd.date_range(start=row.time_start, periods=num_traces_in_blasthole, freq=‘1S’)</li>
+<li><strong>mwd_hole_df</strong> (<em>Dataframe</em>) – dataframe containing column_label, to be interpolated</li>
+<li><strong>column_label</strong> (<em>str</em>) – what to interp … for example ‘computed_elevation’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first"><strong>end_time_column_label</strong> (<em>str</em>) – ‘start_time’ to select timeframe to interp</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Interped data, for example the depths of the traces</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uses 1D, linear interpolation function instead of the kneighbors
+method used in <a class="reference internal" href="#mwd_rhino_merger.MWDRhinoMerger.get_interpolated_categorical_column" title="mwd_rhino_merger.MWDRhinoMerger.get_interpolated_categorical_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_interpolated_categorical_column()</span></code></a></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/DC_Logo_Padded.png" alt="Logo"/>
+            </a></p>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">DataCloud Rhino Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html#documenting-with-sphinx">Documenting with Sphinx</a></li>
+</ul>
+
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/module_docs/helper_docs/adchelpdoc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, DataCloud.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

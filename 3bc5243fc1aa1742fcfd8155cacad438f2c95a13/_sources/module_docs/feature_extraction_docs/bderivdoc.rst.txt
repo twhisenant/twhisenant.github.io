@@ -1,0 +1,20 @@
+.. Sphinx Documentation sub directory file for the feature_extraction directory
+    in dcrhino3. Pulls modules from feature_extraction directory for index.rst
+    doctree which buildds documentation in html. Author: Tristan Whisenant for 
+    Datacloud, February 2019
+
+Feature Derivation
+==================
+
+External Derivations
+^^^^^^^^^^^^^^^^^^^^
+
+    .. automodule:: external_feature_derivations
+        :members:
+        
+Intermediate Deriver
+^^^^^^^^^^^^^^^^^^^^
+        
+    .. automodule:: intermediate_derived_features
+        :members:
+    

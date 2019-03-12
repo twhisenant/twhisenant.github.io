@@ -1,0 +1,11 @@
+.. DC Rhinos sub directory file for process flow folder and Sphinx Documentation
+   Author: Tristan Whisenant for DataCloud, March 2019
+   Purpose: Pull modules in process flow folder for index.rst doctree.
+   Note: excluded hole_selector.py for now
+    
+DC Rhino Process Flow Script
+============================
+Runs the Rhino software.
+
+    .. automodule:: process_flow
+        :members:

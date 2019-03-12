@@ -1,0 +1,354 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documenting with Sphinx &#8212; DataCloud Rhino 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Plotting Data" href="plotdoc.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plotdoc.html" title="Plotting Data"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="documenting-with-sphinx">
+<h1>Documenting with Sphinx<a class="headerlink" href="#documenting-with-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>This guide walks through DataCloud’s specific use of Sphinx documentation
+software. It will demonstrate how to navigate sphinx-quickstart, format docstrings
+using google standard notation, and how to build the .html files using sphinx-build
+in the command line.</p>
+<div class="section" id="installation-and-quickstart">
+<h2>Installation and Quickstart<a class="headerlink" href="#installation-and-quickstart" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sphinx-download-instructions">
+<h3>Sphinx Download Instructions<a class="headerlink" href="#sphinx-download-instructions" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Sphinx 1.8 is included with all new downloads of <a class="reference external" href="https://www.anaconda.com/">Anaconda.</a>
+This is the last Sphinx version to include support for evaluating Python 2 syntax, so
+that is what we will use for now.</p>
+<dl class="docutils">
+<dt><strong>Do I have Sphinx?</strong>:</dt>
+<dd><p class="first">If Sphinx is not recognized by the command line in an Anaconda&lt;2/3&gt; directory,
+check this directory for it:</p>
+<p class="last"><code class="code docutils literal notranslate"><span class="pre">user_orwhereveryoukeep/Anaconda2/pkgs/sphinx-1.8....</span></code></p>
+</dd>
+</dl>
+<p>If absent, enter <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">sphinx</span></code> in a conda-supported terminal. This can also help:</p>
+<blockquote>
+<div><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/installation.html">https://www.sphinx-doc.org/en/master/usage/installation.html</a></div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="sphinx-quickstart">
+<h3>Sphinx-Quickstart<a class="headerlink" href="#sphinx-quickstart" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>When you want to start documentation for a project, enter <code class="code docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>
+to have Sphinx <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/quickstart.html#setting-up-the-documentation-sources">populate a documentation folder for you</a>.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>Quickstart is only used when starting documentation from scratch.</strong>
+For projects like dc_rhino, a documentation folder has already been created.
+You can skip straight to the next section, and begin working on
+connecting the .rst file in your module’s directory with the index file
+in the documentation directory.</p>
+</div>
+</div></blockquote>
+<p>I have included a picture below to show what the options look like. They can be
+modified later in the config.py file quickstart automatically creates. This example
+uses <strong>.rst files.</strong></p>
+<blockquote>
+<div><img alt="../_images/sphinx_quick.PNG" class="align-center" src="../_images/sphinx_quick.PNG" />
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="connecting-your-module-to-the-documentation-directory">
+<h3>Connecting Your Module to the Documentation Directory<a class="headerlink" href="#connecting-your-module-to-the-documentation-directory" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>First, make a restructured text file inside the <code class="code docutils literal notranslate"><span class="pre">module_doc</span></code> directory. For
+now, just give it a little header and do one module, like the .rst file below does.
+Make sure to <strong>change the name</strong> to your own after the automodule statement and in the title.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">DC</span> <span class="n">Rhinos</span> <span class="n">sub</span> <span class="n">directory</span> <span class="nb">file</span> <span class="k">for</span> <span class="n">plotter</span> <span class="n">folder</span> <span class="ow">and</span> <span class="n">Sphinx</span> <span class="n">Documentation</span>
+   <span class="n">Author</span><span class="p">:</span> <span class="n">Tristan</span> <span class="n">Whisenant</span> <span class="k">for</span> <span class="n">DataCloud</span><span class="p">,</span> <span class="n">February</span> <span class="mi">2019</span>
+   <span class="n">Purpose</span><span class="p">:</span> <span class="n">Pull</span> <span class="n">modules</span> <span class="ow">in</span> <span class="n">plotters</span> <span class="n">folder</span> <span class="k">for</span> <span class="n">index</span><span class="o">.</span><span class="n">rst</span> <span class="n">doctree</span><span class="o">.</span>
+   
+<span class="n">Plotting</span> <span class="n">Data</span>
+<span class="o">*************</span>
+
+
+<span class="n">Plotting</span> <span class="n">Module</span>
+<span class="o">========================</span>
+
+<span class="o">..</span> <span class="n">automodule</span><span class="p">::</span> <span class="n">qc_plotter</span>
+    <span class="p">:</span><span class="n">members</span><span class="p">:</span>
+    
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to save these documents as <code class="code docutils literal notranslate"><span class="pre">name.rst</span></code> in addition
+to selecting the ReStructured Text format.</p>
+</div>
+<p>Finally, open the <strong>index.rst</strong> file and change whatever welcome message/comments
+you want, but make sure the <code class="code docutils literal notranslate"><span class="pre">glob</span></code> and <code class="code docutils literal notranslate"><span class="pre">module_docs/*</span></code> lines don’t change. Feel free to
+check out the documentation for the <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure">toctree.</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">DCRhinoDocs</span> <span class="n">documentation</span> <span class="n">master</span> <span class="nb">file</span><span class="p">,</span> <span class="n">created</span> <span class="n">by</span>
+   <span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span> <span class="n">on</span> <span class="n">Wed</span> <span class="n">Feb</span>  <span class="mi">6</span> <span class="mi">13</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">54</span> <span class="mf">2019.</span>
+   <span class="n">You</span> <span class="n">can</span> <span class="n">adapt</span> <span class="n">this</span> <span class="nb">file</span> <span class="n">completely</span> <span class="n">to</span> <span class="n">your</span> <span class="n">liking</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">should</span> <span class="n">at</span> <span class="n">least</span>
+   <span class="n">contain</span> <span class="n">the</span> <span class="n">root</span> <span class="sb">`toctree`</span> <span class="n">directive</span><span class="o">.</span>
+
+<span class="n">DC</span> <span class="n">Rhino</span><span class="s1">&#39;s Documentation</span>
+<span class="o">=============================</span>
+
+<span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+   <span class="p">:</span><span class="n">glob</span><span class="p">:</span>
+   
+   <span class="n">module_docs</span><span class="o">/*</span>
+   
+    
+
+
+<span class="n">Indices</span> <span class="ow">and</span> <span class="n">Search</span>
+<span class="o">==================</span>
+
+<span class="o">*</span> <span class="p">:</span><span class="n">ref</span><span class="p">:</span><span class="sb">`genindex`</span>
+<span class="o">*</span> <span class="p">:</span><span class="n">ref</span><span class="p">:</span><span class="sb">`modindex`</span>
+<span class="o">*</span> <span class="p">:</span><span class="n">ref</span><span class="p">:</span><span class="sb">`search`</span>
+</pre></div>
+</div>
+<p>Sphinx can now see, and document, the contents of <code class="code docutils literal notranslate"><span class="pre">yournewrstfile.rst</span></code>
+sitting in a directory (neatly detached from the software I might add).</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">If autodoc can’t import your module (e.g. <code class="code docutils literal notranslate"><span class="pre">autodoc</span> <span class="pre">can't</span> <span class="pre">import/find</span> <span class="pre">module</span> <span class="pre">'ys_utils'</span></code>),
+add the relative path to your module in the conf.py file. <cite>Help? &lt;https://stackoverflow.com/questions/10324393/sphinx-build-fail-autodoc-cant-import-find-module&gt;_</cite></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="formatting-the-new-rst-file">
+<h3>Formatting the New .rst File<a class="headerlink" href="#formatting-the-new-rst-file" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>To completely finish <code class="code docutils literal notranslate"><span class="pre">yournewrstfile.rst</span></code>, we have to do some formatting. Depending on
+how you want your finished product to look, this could change. However,
+<em>the bulk of the documentation should be in the code itself.</em>
+Docstrings inside the code allow documentation to be updated <em>as the code develops,</em>
+not as an afterthought. <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/quickstart.html#autodoc">Autodoc allows sphinx to build documentation from docstrings.</a></p>
+<p>For example, going to an entirely separate .rst file is not as natural as deleting the
+docstring underneath a deprecated function. For this reason, <strong>keep the .rst
+file minimalistic.</strong> Here is an example of a 2-module rst that relies mostly
+on automodule and docstrings to make the documentation.</p>
+<p><strong>Plotdoc.rst</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">DC</span> <span class="n">Rhinos</span> <span class="n">sub</span> <span class="n">directory</span> <span class="nb">file</span> <span class="k">for</span> <span class="n">plotter</span> <span class="n">folder</span> <span class="ow">and</span> <span class="n">Sphinx</span> <span class="n">Documentation</span>
+   <span class="n">Author</span><span class="p">:</span> <span class="n">Tristan</span> <span class="n">Whisenant</span> <span class="k">for</span> <span class="n">DataCloud</span><span class="p">,</span> <span class="n">February</span> <span class="mi">2019</span>
+   <span class="n">Purpose</span><span class="p">:</span> <span class="n">Pull</span> <span class="n">modules</span> <span class="ow">in</span> <span class="n">plotters</span> <span class="n">folder</span> <span class="k">for</span> <span class="n">index</span><span class="o">.</span><span class="n">rst</span> <span class="n">doctree</span><span class="o">.</span>
+   
+<span class="n">Plotting</span> <span class="n">Data</span>
+<span class="o">*************</span>
+
+
+<span class="n">Plotting</span> <span class="n">Module</span>
+<span class="o">========================</span>
+
+<span class="o">..</span> <span class="n">automodule</span><span class="p">::</span> <span class="n">qc_plotter</span>
+    <span class="p">:</span><span class="n">members</span><span class="p">:</span>
+    
+
+        
+<span class="n">Color</span> <span class="n">Bar</span> <span class="n">Module</span>
+<span class="o">=========================</span>
+
+<span class="o">..</span> <span class="n">automodule</span><span class="p">::</span> <span class="n">colour_bar_axis_limits</span>
+    <span class="p">:</span><span class="n">members</span><span class="p">:</span>
+
+
+
+   
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>It may be helpful to have an <strong>.rst notation primer</strong> ready:</dt>
+<dd><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html</a></dd>
+</dl>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="documenting-your-code">
+<h2>Documenting your Code<a class="headerlink" href="#documenting-your-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="formatting-docstrings">
+<h3>Formatting Docstrings<a class="headerlink" href="#formatting-docstrings" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Docstrings are started/ended with three quotation marks, allowing Sphinx Autodoc
+to interpret and build .html documentation from them. Here is an example of a docstring
+from <a class="reference external" href="http://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google’s Style Guide:</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fetch_bigtable_rows</span><span class="p">(</span><span class="n">big_table</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">other_silly_variable</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fetches rows from a Bigtable.</span>
+
+<span class="sd">    Retrieves rows pertaining to the given keys from the Table instance</span>
+<span class="sd">    represented by big_table.  Silly things may happen if</span>
+<span class="sd">    other_silly_variable is not None.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        big_table: An open Bigtable Table instance.</span>
+<span class="sd">        keys: A sequence of strings representing the key of each table row</span>
+<span class="sd">            to fetch.</span>
+<span class="sd">        other_silly_variable: Another optional variable, that has a much</span>
+<span class="sd">            longer name than the other args, and which does nothing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dict mapping keys to the corresponding table row data</span>
+<span class="sd">        fetched. Each row is represented as a tuple of strings. For</span>
+<span class="sd">        example:</span>
+
+<span class="sd">        {&#39;Serak&#39;: (&#39;Rigel VII&#39;, &#39;Preparer&#39;),</span>
+<span class="sd">         &#39;Zim&#39;: (&#39;Irk&#39;, &#39;Invader&#39;),</span>
+<span class="sd">         &#39;Lrrr&#39;: (&#39;Omicron Persei 8&#39;, &#39;Emperor&#39;)}</span>
+
+<span class="sd">        If a key from the keys argument is missing from the dictionary,</span>
+<span class="sd">        then that row was not found in the table.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        An_Error: An error occurred.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This is <em>where the meat of your documentation lives,</em> and also allows other developers
+to navigate the software without jumping between .html and .py files. Ideally, we
+want our documentation to be as readable as possible while remaining compact. <a class="reference external" href="http://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google’s
+standardized notation for docstrings</a>
+allows human and sphinx readability through a built-in sphinx extension
+called <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">napoleon.</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sphinx will still be able to interpret .rst directives not included
+in Google’s Python Style Guide/napoleon.</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="generating-html-files">
+<h3>Generating .html Files<a class="headerlink" href="#generating-html-files" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>To <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/quickstart.html#running-the-build">generate the .html files</a>,
+open a terminal and enter:</p>
+<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">sphinx-build</span> <span class="pre">sourcedirectory</span> <span class="pre">builddirectory</span></code>.</p>
+<p>The built .html files will be created in your builddirectory. You can open these
+with your web browser.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">sourcedirectory will be   <strong>./</strong>   if your terminal is in the
+sourcedirectory. And builddirectory could be   <strong>./html_out</strong>, up to you.</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="step-9-celebrate">
+<h3>Step 9: Celebrate!<a class="headerlink" href="#step-9-celebrate" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Hopefully that wasn’t too painful! Enjoy.</p>
+<div class="figure align-center" id="id1">
+<img alt="../_images/party2.gif" src="../_images/party2.gif" />
+<p class="caption"><span class="caption-text">Me documenting with Sphinx</span></p>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/DC_Logo_Padded.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documenting with Sphinx</a><ul>
+<li><a class="reference internal" href="#installation-and-quickstart">Installation and Quickstart</a><ul>
+<li><a class="reference internal" href="#sphinx-download-instructions">Sphinx Download Instructions</a></li>
+<li><a class="reference internal" href="#sphinx-quickstart">Sphinx-Quickstart</a></li>
+<li><a class="reference internal" href="#connecting-your-module-to-the-documentation-directory">Connecting Your Module to the Documentation Directory</a></li>
+<li><a class="reference internal" href="#formatting-the-new-rst-file">Formatting the New .rst File</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documenting-your-code">Documenting your Code</a><ul>
+<li><a class="reference internal" href="#formatting-docstrings">Formatting Docstrings</a></li>
+<li><a class="reference internal" href="#generating-html-files">Generating .html Files</a></li>
+<li><a class="reference internal" href="#step-9-celebrate">Step 9: Celebrate!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/module_docs/zsphinxdoc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plotdoc.html" title="Plotting Data"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, DataCloud.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

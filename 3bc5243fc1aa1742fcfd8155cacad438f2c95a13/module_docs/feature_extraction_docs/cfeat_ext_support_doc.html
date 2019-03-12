@@ -1,0 +1,227 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Support &#8212; DataCloud Rhino 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="support">
+<h1>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="j1-support">
+<h2>j1 Support<a class="headerlink" href="#j1-support" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="minimal-extraction-support">
+<h2>Minimal Extraction Support<a class="headerlink" href="#minimal-extraction-support" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-supporting_minimal_feature_extraction"></span><p>Created on Thu Aug  2 16:25:58 2018</p>
+<p>Author: kkappler</p>
+<dl class="function">
+<dt id="supporting_minimal_feature_extraction.get_wavelet_window_indices">
+<code class="descname">get_wavelet_window_indices</code><span class="sig-paren">(</span><em>time_vector</em>, <em>start_time</em>, <em>end_time</em><span class="sig-paren">)</span><a class="headerlink" href="#supporting_minimal_feature_extraction.get_wavelet_window_indices" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">20170823: this intended to replace variations on method from primary, multiple_peak_finder, multiple_refined,
+Here start and end times are intended to be floats</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="supporting_minimal_feature_extraction.WaveletForFeatureExtraction">
+<em class="property">class </em><code class="descname">WaveletForFeatureExtraction</code><span class="sig-paren">(</span><em>data</em>, <em>time_vector</em>, <em>wavelet_features</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#supporting_minimal_feature_extraction.WaveletForFeatureExtraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates features on individual wavelets.  Actually
+the data here are “windows”.  we think there are wavelets in these windows
+much of the time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="supporting_minimal_feature_extraction.extract_features_from_primary_wavelet">
+<code class="descname">extract_features_from_primary_wavelet</code><span class="sig-paren">(</span><em>tr</em>, <em>primary_window_halfwidth_ms</em>, <em>component</em>, <em>wavelet_type</em>, <em>wavelet_features</em><span class="sig-paren">)</span><a class="headerlink" href="#supporting_minimal_feature_extraction.extract_features_from_primary_wavelet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search a region near lag=0 (t=0) for the primary-peak, in two steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li>step 1: find a local maxima</li>
+<li>step 2: center on the local maxima</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tr</strong> (<em>Dataframe</em>) – TrimmedCorrelatedTracePacket()</li>
+<li><strong>primary_window_halfwidth_ms</strong> (<em>float</em>) – (~3ms) this is the expected half width of the primary
+peak, it can be approximate, we use it to define a chunk of the trace_data
+where we expect the primary peak to live.</li>
+<li><strong>component</strong> (<em>str</em>) – axial/tangential (to save values)</li>
+<li><strong>wavelet_type</strong> (<em>str</em>) – </li>
+<li><strong>wavelet_features</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first"><strong>primary_wavelet_indices_1</strong> (<em>list</em>) – these are the indices of the data array used to extract
+the primary wavelet search region</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dataframe ‘waveletforfeatureextraction’</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(Dataframe)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">migrate this to seismic processing eventually</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="supporting_minimal_feature_extraction.extract_features_from_multiple_wavelet">
+<code class="descname">extract_features_from_multiple_wavelet</code><span class="sig-paren">(</span><em>tr</em>, <em>time_vector</em>, <em>earliest_multiple_time</em>, <em>latest_multiple_time</em>, <em>component</em>, <em>wavelet_type</em>, <em>wavelet_features</em><span class="sig-paren">)</span><a class="headerlink" href="#supporting_minimal_feature_extraction.extract_features_from_multiple_wavelet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search a region near lag=0 (t=0) for the primary-peak, in two steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li>step 1: find a local maxima</li>
+<li>step 2: center on the local maxima</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tr</strong> (<em>Dataframe</em>) – TrimmedCorrelatedTracePacket()</li>
+<li><strong>earliest_multiple_time</strong> (<em>float</em>) – the earliest time expected to contain the multiple peak</li>
+<li><strong>latest_multiple_time</strong> (<em>float</em>) – the latest time expected to contain the multiple peak</li>
+<li><strong>component</strong> (<em>str</em>) – axial/tangential (to save values)</li>
+<li><strong>wavelet_type</strong> (<em>str</em>) – </li>
+<li><strong>wavelet_features</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first"><strong>multiple_wavelet_indices_1</strong> (<em>list</em>) – these are the indices of the data array used to extract
+the multiple wavelet search region</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dataframe ‘waveletforfeatureextraction’</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(Dataframe)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">migrate this to seismic processing eventually</p>
+</div>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Todo</p>
+<p class="last">Once ROBUST can probably use same routine for PRIM and MULT</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="supporting_minimal_feature_extraction.my_function">
+<code class="descname">my_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#supporting_minimal_feature_extraction.my_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="supporting_minimal_feature_extraction.main">
+<code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#supporting_minimal_feature_extraction.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/DC_Logo_Padded.png" alt="Logo"/>
+            </a></p>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">DataCloud Rhino Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html#documenting-with-sphinx">Documenting with Sphinx</a></li>
+</ul>
+
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/module_docs/feature_extraction_docs/cfeat_ext_support_doc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, DataCloud.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

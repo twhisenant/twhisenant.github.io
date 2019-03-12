@@ -1,0 +1,882 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Drills, Bits, Installation Locations &#8212; DataCloud Rhino 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="drills-bits-installation-locations">
+<h1>Drills, Bits, Installation Locations<a class="headerlink" href="#drills-bits-installation-locations" title="Permalink to this headline">¶</a></h1>
+<p>Assign integers to represent what type of drill/bit/install was used.</p>
+<blockquote>
+<div><span class="target" id="module-drill_types"></span><dl class="class">
+<dt id="drill_types.DrillTypes">
+<em class="property">class </em><code class="descname">DrillTypes</code><a class="headerlink" href="#drill_types.DrillTypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign integers to drill types.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Unknown = 0</li>
+<li>Electric Rotary = 1</li>
+<li>Diesel Rotary = 2</li>
+<li>DTH = 3</li>
+<li>Top Hammer = 4</li>
+<li>Coring = 5</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<span class="target" id="module-bit_types"></span><dl class="class">
+<dt id="bit_types.BitTypes">
+<em class="property">class </em><code class="descname">BitTypes</code><a class="headerlink" href="#bit_types.BitTypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign integers to bit types.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Other = 0</li>
+<li>Tricone = 1</li>
+<li>PDC = 2</li>
+<li>Coring = 3</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<span class="target" id="module-sensor_installation_locations"></span><dl class="class">
+<dt id="sensor_installation_locations.SensorInstallationLocations">
+<em class="property">class </em><code class="descname">SensorInstallationLocations</code><a class="headerlink" href="#sensor_installation_locations.SensorInstallationLocations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign integers to sensor installation locations.</p>
+<blockquote>
+<div><ul class="simple">
+<li>OTHER = 0</li>
+<li>SHOCKSUB = 1</li>
+<li>SAVER_SUB = 2</li>
+<li>STEEL = 3</li>
+<li>STEEL_BREAKOUT = 4</li>
+<li>UNKNOWN = 5</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><span class="target" id="module-config"></span><p>Author: thiago</p>
+<dl class="class">
+<dt id="config.Config">
+<em class="property">class </em><code class="descname">Config</code><span class="sig-paren">(</span><em>metadata=None</em>, <em>env_config_parser=None</em>, <em>config_parser=None</em><span class="sig-paren">)</span><a class="headerlink" href="#config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="config.Config.component_index">
+<code class="descname">component_index</code><span class="sig-paren">(</span><em>component_id</em><span class="sig-paren">)</span><a class="headerlink" href="#config.Config.component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#config.Config.get_component_index" title="config.Config.get_component_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_component_index()</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="config.Config.get_component_index">
+<code class="descname">get_component_index</code><span class="sig-paren">(</span><em>component_id</em><span class="sig-paren">)</span><a class="headerlink" href="#config.Config.get_component_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns integer, representing the index of that component in component_id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component_id</strong> (<em>str</em>) – ‘axial’, ‘tangentia’, or ‘radial’</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">this is the index assocaited with the component label</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.components_to_process">
+<code class="descname">components_to_process</code><a class="headerlink" href="#config.Config.components_to_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>D</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of strings of components to collect/process</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.num_taps_in_decon_filter">
+<code class="descname">num_taps_in_decon_filter</code><a class="headerlink" href="#config.Config.num_taps_in_decon_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save number of coefficients in the deconvolution filter, calculated with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">_get_num_decon_taps()</span></code></p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">confirm type is int returned by get_num_decon_taps()</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.samples_per_trace">
+<code class="descname">samples_per_trace</code><a class="headerlink" href="#config.Config.samples_per_trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>D</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">number of samples per trace</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.n_spiking_decon_filter_taps">
+<code class="descname">n_spiking_decon_filter_taps</code><a class="headerlink" href="#config.Config.n_spiking_decon_filter_taps" title="Permalink to this definition">¶</a></dt>
+<dd><p>D</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">number of <em>spiking</em> decon filter coefficients (a.k.a. the order)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.ideal_timestamps">
+<code class="descname">ideal_timestamps</code><a class="headerlink" href="#config.Config.ideal_timestamps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set ideal timestamps of equal interval for our trace length.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="config.Config.json_string">
+<code class="descname">json_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#config.Config.json_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store current variables in json string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">JSON string of module variables</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(json)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="config.Config.set_metadata">
+<code class="descname">set_metadata</code><span class="sig-paren">(</span><em>metadata</em><span class="sig-paren">)</span><a class="headerlink" href="#config.Config.set_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert datetime objects (in metadata) to strings to facilitate <code class="xref py py-func docutils literal notranslate"><span class="pre">json_str()</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metadata</strong> (<em>dataframe</em>) – metadata on the hole/mine/process</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">20181212: json.dump does not seem to like datetime objects,
+so we cast as strings
+#key_list = [key for key, data_type in METADATA_HEADER_FORMAT_KEYS.items()]</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.n_samples_trimmed_trace">
+<code class="descname">n_samples_trimmed_trace</code><a class="headerlink" href="#config.Config.n_samples_trimmed_trace" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>the total number of samples in the trimmed_trace, calculated</dt>
+<dd>by sampling_rate and time ecnompassed.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Returns</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">(int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="config.Config.trimmed_trace_duration">
+<code class="descname">trimmed_trace_duration</code><a class="headerlink" href="#config.Config.trimmed_trace_duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-assign duration to reflect trimmed trace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">duration of trimmed trace</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(float)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="config.Config.set_config_parser">
+<code class="descname">set_config_parser</code><span class="sig-paren">(</span><em>config_parser</em><span class="sig-paren">)</span><a class="headerlink" href="#config.Config.set_config_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can be the env_config_parser here …</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-env_config"></span><dl class="class">
+<dt id="env_config.MwdType">
+<em class="property">class </em><code class="descname">MwdType</code><a class="headerlink" href="#env_config.MwdType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="env_config.EnvConfig">
+<em class="property">class </em><code class="descname">EnvConfig</code><span class="sig-paren">(</span><em>env_conf_json_path=False</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="env_config.EnvConfig.get_hole_h5_interpolated_cache_folder">
+<code class="descname">get_hole_h5_interpolated_cache_folder</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.get_hole_h5_interpolated_cache_folder" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mine_name</strong> (<em>str</em>) – mine name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Path to h5 interpolated cache folder for the mine named, False if missing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="env_config.EnvConfig.get_hole_h5_processed_cache_folder">
+<code class="descname">get_hole_h5_processed_cache_folder</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.get_hole_h5_processed_cache_folder" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mine_name</strong> (<em>str</em>) – mine name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Path to h5 processed cache folder for the mine named, False if missing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="env_config.EnvConfig.is_file_blacklisted">
+<code class="descname">is_file_blacklisted</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.is_file_blacklisted" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True is blacklisted, False if not</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(bool)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="env_config.EnvConfig.get_rhino_db_connection_from_mine_name">
+<code class="descname">get_rhino_db_connection_from_mine_name</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.get_rhino_db_connection_from_mine_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search env_config.json for rhino_db_connection credentials.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">rhino_db_connection (host,user,password,database),
+or False if missing from env_config</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="env_config.EnvConfig.get_mwd_type">
+<code class="descname">get_mwd_type</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.get_mwd_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data file type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">CSV or DATABASE to MwdType key</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="env_config.EnvConfig.get_mwd_csv_cfg">
+<code class="descname">get_mwd_csv_cfg</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.get_mwd_csv_cfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get csv configuration from mine_cfg dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">mine_cfg[‘mwd’][‘csv’] or False if mwd missing from keys of mine_cfg</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="env_config.EnvConfig.get_mwd_db_cfg">
+<code class="descname">get_mwd_db_cfg</code><span class="sig-paren">(</span><em>mine_name</em><span class="sig-paren">)</span><a class="headerlink" href="#env_config.EnvConfig.get_mwd_db_cfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get database configuration from mine_cfg dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">mine_cfg[‘mwd’][‘db’] or False if mwd missing from keys of mine_cfg</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="data-handling">
+<h1>Data Handling<a class="headerlink" href="#data-handling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-metadata"></span><p>Created on Wed Jul 18 18:06:36 2018
+Metadata Header definition for Rhino Unit File structure
+Author: Natal</p>
+<dl class="function">
+<dt id="metadata.StandardString">
+<code class="descname">StandardString</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.StandardString" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<em>str</em>) – string to be standardized</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">cleaned, standardized string with underscores instead of spaces</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="metadata.convert_to_meters">
+<code class="descname">convert_to_meters</code><span class="sig-paren">(</span><em>value</em>, <em>units</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.convert_to_meters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts distances to meters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>value</strong> (<em>float</em>) – value to be converted</li>
+<li><strong>units</strong> (<em>int</em>) – <p>current units of value represented by an integer</p>
+<ul>
+<li>1 for feet</li>
+<li>2 for inches</li>
+<li>5 for km</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">converted value rounded to 2 decimal places</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="metadata.Measurement">
+<em class="property">class </em><code class="descname">Measurement</code><span class="sig-paren">(</span><em>tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Measurement" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="metadata.Measurement.value_in_meters">
+<code class="descname">value_in_meters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Measurement.value_in_meters" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#metadata.convert_to_meters" title="metadata.convert_to_meters"><code class="xref py py-func docutils literal notranslate"><span class="pre">metadata.convert_to_meters()</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="metadata.DataType">
+<em class="property">class </em><code class="descname">DataType</code><a class="headerlink" href="#metadata.DataType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="metadata.Metadata">
+<em class="property">class </em><code class="descname">Metadata</code><span class="sig-paren">(</span><em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="metadata.Metadata.get_sensitivities_dict">
+<code class="descname">get_sensitivities_dict</code><span class="sig-paren">(</span><em>cfg</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.get_sensitivities_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get sensitivities dictionary for axial, tangential, and radial components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cfg</strong> (<em>dataframe</em>) – to retrieve sensitivity data from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>dictionary with keys component_id (str) and values for respective</dt>
+<dd>sensitivities. All component sensitivities are the same unless sensor_type = 2</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(dict)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.filename">
+<code class="descname">filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.filename" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Unique filename based on date, time, and sensor id number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.field_base_path">
+<code class="descname">field_base_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.field_base_path" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Path to specific field data using a standardized directory structure</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.level_0_path">
+<code class="descname">level_0_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.level_0_path" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Path from <a class="reference internal" href="#metadata.Metadata.field_base_path" title="metadata.Metadata.field_base_path"><code class="xref py py-func docutils literal notranslate"><span class="pre">field_base_path()</span></code></a> joined by level_0</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.level_1_path">
+<code class="descname">level_1_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.level_1_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distinguishes between piezo and mems sensors in path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Path from <a class="reference internal" href="#metadata.Metadata.field_base_path" title="metadata.Metadata.field_base_path"><code class="xref py py-func docutils literal notranslate"><span class="pre">field_base_path()</span></code></a> joined by level_1 and sensor type</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves metadata to a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – file to be saved</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads csv metafile. Formats using <a class="reference internal" href="#metadata.Metadata.format_dtype" title="metadata.Metadata.format_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">format_dtype()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – path to csv metafile</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.format_dtype">
+<code class="descname">format_dtype</code><span class="sig-paren">(</span><em>row</em><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.format_dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standardized metadata format and variable type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>row</strong> – list with attribute name,value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">atrribute_name,value formatted</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="metadata.Metadata.metadata_to_dictionary">
+<code class="descname">metadata_to_dictionary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#metadata.Metadata.metadata_to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates dictionary of metadata.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Metadata with the following keys:<blockquote>
+<div><ul class="simple">
+<li>drill_id</li>
+<li>digitizer_id</li>
+<li>orientation</li>
+<li>sampling_rate</li>
+<li>sensor_distance_to_source_in_meters</li>
+<li>sensor_distance_to_shocksub</li>
+<li>accelerometer_type</li>
+<li>sensor_type</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(dict)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+<div class="section" id="trace-dataframe">
+<h2>Trace Dataframe<a class="headerlink" href="#trace-dataframe" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><span class="target" id="module-trace_dataframe"></span><p>Author: natal</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>20190123: we have not discussed exactly how we will handle the global_config
+storage.  We know that for a particular trace only one global config can be active
+and since a trace comes from a file, we are planning to reference the global_config
+of a file to the trace.  A modest complication we have discussed is when a file
+has more than one config.  I cannot recall how that is possible but it seems that
+it is believed to be possible (&#64;TODO: discuss this case … can we eliminate it?
+is it becuase we may swap out a sensor without rebooting rhino?? … or is this
+because different processing types maybe used for different traces?  Or because a
+single hole could have a reboot where some cfg changes, i.e. sampling rate – but wouldn’t that
+result in a new file uid??)
+In any case, the dataset we get back will be a dataframe indexed by timestamp.
+For each timestamp there are traces but also a column called ‘acorr_file_id’, this
+is an integer which is basically a uid for the parent file and can be used to call
+the relevant config … it is equal to 14 in our prelimniary test)</p>
+<p class="last">So the global configs should be a dictionary, keyed by ‘acorr_file_id’,</p>
+</div>
+<dl class="class">
+<dt id="trace_dataframe.ModuleType">
+<em class="property">class </em><code class="descname">ModuleType</code><a class="headerlink" href="#trace_dataframe.ModuleType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign integers to different module types.</p>
+<blockquote>
+<div><ul class="simple">
+<li>RAW = 1</li>
+<li>INTERPOLATION = 2</li>
+<li>AUTOCORRELATION = 3</li>
+<li>MWD_MERGE = 4</li>
+<li>LEAD_DECON = 5</li>
+<li>LAG_DECON = 6</li>
+<li>BAND_PASS_FILTER = 7</li>
+<li>PHASE_ROTATION = 8</li>
+<li>TRIM = 9</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="class">
+<dt id="trace_dataframe.TraceData">
+<em class="property">class </em><code class="descname">TraceData</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="trace_dataframe.TraceData.apply_module">
+<code class="descname">apply_module</code><span class="sig-paren">(</span><em>module_type</em>, <em>arguments</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.apply_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the applied modules.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.load_from_db">
+<code class="descname">load_from_db</code><span class="sig-paren">(</span><em>db_helper</em>, <em>files_ids</em>, <em>min_ts</em>, <em>max_ts</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.load_from_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load data (selected with file ids and timestamps) from the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>db_helper</strong> (<em>module</em>) – <a class="reference internal" href="../helper_docs/adchelpdoc.html#rhino_db_helper.RhinoDBHelper" title="rhino_db_helper.RhinoDBHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">rhino_db_helper.RhinoDBHelper</span></code></a></li>
+<li><strong>files_ids</strong> (<em>list</em>) – list of integers</li>
+<li><strong>min_ts</strong> (<em>integer</em><em> (or </em><em>float?</em><em>)</em>) – start timestamps of data set to get from db</li>
+<li><strong>max_ts</strong> (<em>integer</em><em> (or </em><em>float?</em><em>)</em>) – end timestamps of data set to get from db</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the intended use case for this function is to get data from a
+‘observed-blasthole’.  Normally len(files_ids) will equal 1, but we need to
+consider the case where the hole is in more than one file …</p>
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">push thhe handling of the files_ids, and timestamps back a layer so the
+user doesn’t use this method outside of exceptional circumstances …
+i.e. it will be more common to request a blasthole, together with a sensor_id</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.save_to_csv">
+<code class="descname">save_to_csv</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.save_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save dataframe (without trace data) to csv at location specified by “path”</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – where to save csv</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.save_to_h5">
+<code class="descname">save_to_h5</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.save_to_h5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save dataframe (without trace data) to h5 at location specified by “path”</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – where to save h5</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">when porting to python3 replace iteritems with items see Keith’s answer in
+<a class="reference external" href="https://stackoverflow.com/questions/10458437/what-is-the-difference-between-dict-items-and-dict-iteritems">https://stackoverflow.com/questions/10458437/what-is-the-difference-between-dict-items-and-dict-iteritems</a></p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">this requires dtypes to be float, will need to use a mapping of
+dtypes for df columns … where will we get this? &#64;Thiago: will this
+be maintained in database models?</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>20190122: This needs to handle three forms of ‘saving’:</p>
+<ol class="last arabic simple">
+<li>Save the traces (as float32, today they will store as float, will check 32 or 64 later)</li>
+<li>Save any columns from the mwd</li>
+<li>Save the global_config (as json dumps?)</li>
+</ol>
+</div>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">clean up iteration over trace labels to use only the
+components specified in global_config</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.realtime_append_to_h5">
+<code class="descname">realtime_append_to_h5</code><span class="sig-paren">(</span><em>path</em>, <em>file_id='0'</em>, <em>global_config=None</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.realtime_append_to_h5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add to h5 file found at path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> – </p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>file_id = ‘0’</strong></li>
+<li><strong>global_config = None</strong></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.load_from_h5">
+<code class="descname">load_from_h5</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.load_from_h5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of save_to_h5; Handle traces, then other columns, then json cfg</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.add_global_config">
+<code class="descname">add_global_config</code><span class="sig-paren">(</span><em>global_config</em>, <em>file_id</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.add_global_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add gloabl configs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>global_config</strong> (<em>dict</em>) – global_config dictionary to add</li>
+<li><strong>file_id</strong> (<em>str</em>) – where to add the dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file_id of edited file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.global_config_by_index">
+<code class="descname">global_config_by_index</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.global_config_by_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get global configs by index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.component_as_array">
+<code class="descname">component_as_array</code><span class="sig-paren">(</span><em>component_id</em><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.component_as_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data form component as a 2d numpy array with trace index
+running along rows (zero-index).  Useful for slicing data and linalg.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>component_id</strong> (<em>str</em>) – axial/tangential/radial</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">extracted trace, selected by component_id</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(array)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="trace_dataframe.TraceData.copy_without_trace_data">
+<code class="descname">copy_without_trace_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trace_dataframe.TraceData.copy_without_trace_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy dataframe (not deep copying!) and return dataframe without trace data.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/DC_Logo_Padded.png" alt="Logo"/>
+            </a></p>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">DataCloud Rhino Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html#documenting-with-sphinx">Documenting with Sphinx</a></li>
+</ul>
+
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/module_docs/models_docs/moddoc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DataCloud Rhino 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, DataCloud.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>
